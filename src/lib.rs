@@ -60,7 +60,8 @@ mod tests {
     }
 
     #[test]
-    fn try_create_pixel_map_jagged_rows() -> Result {
+    #[should_panic(expected = "rows must have the same number of columns")]
+    fn try_create_pixel_map_jagged_rows() {
         let pixels = vec![
             vec![Pixel::RGB(0, 0, 0), Pixel::RGB(0, 0, 0)],
             vec![Pixel::RGB(0, 0, 0)],
@@ -70,6 +71,6 @@ mod tests {
                 Pixel::RGB(0, 0, 0),
             ],
         ];
-        let map = PixelMap::build(pixels).unwrap();
+        PixelMap::build(pixels).unwrap();
     }
 }
